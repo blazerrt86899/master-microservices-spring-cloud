@@ -37,6 +37,7 @@ public class UserService {
 	public User updateUserService(User user) {
 		user.setBirthDate(new Date());
 		return userRepository.save(user);
+		
 	}
 
 }
