@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.love2code.microservices.exception.RecordNotFoundException;
 import com.love2code.microservices.model.User;
 import com.love2code.microservices.repository.UserRepository;
 
@@ -26,7 +27,8 @@ public class UserService {
 	}
 
 	public User getUserByIdService(Integer id) {
-		return userRepository.findById(id).orElse(new User());
+		return userRepository.findById(id).
+				orElseThrow(() -> new RecordNotFoundException("Record Not Found with id " + id));
 	}
 
 	public String deleteUserByIdService(Integer id) {
